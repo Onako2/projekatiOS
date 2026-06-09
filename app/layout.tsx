@@ -31,7 +31,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col background">
         <div className="flex justify-between w-full">
           <p className="ml-16">projektiOS</p>
-          <p className="ml-16 cursor-pointer" id="welcomeopen">open app</p>
           <Clock></Clock>
         </div>
           {children}

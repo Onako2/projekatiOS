@@ -46,3 +46,18 @@ body {
   justify-content: space-between;
   height: 100vh;
 }
+
+.desktopIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+}
+
+.desktopIconBox {
+  text-align: center; padding: 16px; filter: drop-shadow(0 0 8px black); width: fit-content
+}
+
+#desktopApps {
+  padding-top: 64px;
+  padding-left: 16px;
+}

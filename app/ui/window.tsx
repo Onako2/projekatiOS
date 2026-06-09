@@ -9,22 +9,31 @@ function openWindow(element: HTMLElement) {
   element.style.display = "block"
 }
 
-export default function Window() {
+type AppProps = {
+  name: string,
+  icon: string,
+  id: string
+}
+
+export default function Window({ name, icon, id }: AppProps) {
+  const closeId = `${id}close`;
+  const openId = `${id}open`;
+  const headerId = `${id}header`;
   useEffect(() => {
     console.log("Spawning a new window!")
     // Make the DIV element draggable:
-    let screen = document.getElementById("welcome");
+    const screen = document.getElementById(id);
     dragElement(screen);
 
-    let welcomeScreenClose = document.querySelector("#welcomeclose")
+    let screenClose = document.querySelector(`#${id}close`)
 
-    let welcomeScreenOpen = document.querySelector("#welcomeopen")
+    let screenOpen = document.querySelector(`#${id}open`)
 
-    welcomeScreenClose.addEventListener("click", function() {
+    screenClose.addEventListener("click", function() {
       closeWindow(screen);
     });
 
-    welcomeScreenOpen.addEventListener("click", function() {
+    screenOpen.addEventListener("click", function() {
       openWindow(screen);
     });
 
@@ -42,10 +51,10 @@ export default function Window() {
         return
       }
       // Step 3: Check if there is a special header element associated with the draggable element.
-      if (document.getElementById(element.id + "header")) {
+      if (document.getElementById(id + "header")) {
         // Step 4: If present, assign the `dragMouseDown` function to the header's `onmousedown` event.
         // This allows you to drag the window around by its header.
-        document.getElementById(element.id + "header").onmousedown = startDragging;
+        document.getElementById(id + "header").onmousedown = startDragging;
         console.log("a header!")
       } else {
         // Step 5: If not present, assign the function directly to the draggable element's `onmousedown` event.
@@ -92,13 +101,17 @@ export default function Window() {
   }, [])
 
   return (
-    <div className="border-2 border-solid window w-128 absolute" id="welcome">
-      <div className="flex justify-between w-full">
-        <p className="cursor-pointer mb-8 mt-0" id="welcomeclose">Close</p>
-        <p className="" id="welcomeheader"> mooover</p>
+    <div className="border-2 border-solid window w-256 h-100 absolute bg-gray-900/[var(--bg-opacity)] [--bg-opacity:75%] rounded-md" id={id}>
+      <div className="flex-col gap-4 w-full">
+        <div id={headerId}>
+        <p className="backdrop-hue-rotate-90"> mooover</p>
+        </div>
+        <div className="flex">
+        <p className="cursor-pointer mt-0 bg-red-900" id={closeId}>Close</p>
+        </div>
       </div>
-      <div className="" id="content">
-        <p className="p-16">Hello, World!</p>
+      <div className="w-full h-full" id="content">
+        <iframe className="w-full h-full" src="https://nuc.de.majic.rs/megaskins"></iframe>
       </div>
     </div>
   )
