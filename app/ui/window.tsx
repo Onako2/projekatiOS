@@ -17,7 +17,6 @@ type AppProps = {
 
 export default function Window({ name, icon, id }: AppProps) {
   const closeId = `${id}close`;
-  const openId = `${id}open`;
   const headerId = `${id}header`;
   useEffect(() => {
     console.log("Spawning a new window!")
@@ -104,7 +103,7 @@ export default function Window({ name, icon, id }: AppProps) {
     <div className="border-2 border-solid window w-256 h-100 absolute bg-gray-900/[var(--bg-opacity)] [--bg-opacity:75%] rounded-md" id={id}>
       <div className="flex-col gap-4 w-full">
         <div id={headerId}>
-        <p className="backdrop-hue-rotate-90"> mooover</p>
+        <p className="backdrop-hue-rotate-90">{name}</p>
         </div>
         <div className="flex">
         <p className="cursor-pointer mt-0 bg-red-900" id={closeId}>Close</p>
