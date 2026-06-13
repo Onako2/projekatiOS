@@ -38,7 +38,7 @@ body {
   display: flex;
   backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.25);
-  background-image: url(SAO.jpg);
+  background-image: url(/projekatios/bamberg_city.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,10 +54,15 @@ body {
 }
 
 .desktopIconBox {
-  text-align: center; padding: 16px; filter: drop-shadow(0 0 8px black); width: fit-content
+  text-align: center;
+  padding: 16px;
+  filter: drop-shadow(0 0 8px black);
+  width: fit-content;
 }
 
 #desktopApps {
-  padding-top: 64px;
+  padding-top: 16px;
   padding-left: 16px;
+  padding-bottom: 16px;
+  padding-right: 16px;
 }

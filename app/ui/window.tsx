@@ -12,12 +12,15 @@ function openWindow(element: HTMLElement) {
 type AppProps = {
   name: string,
   icon: string,
-  id: string
+  id: string,
+  url: string,
+  autoShow: boolean
 }
 
-export default function Window({ name, icon, id }: AppProps) {
+export default function Window({ name, icon, id, url, autoShow }: AppProps) {
   const closeId = `${id}close`;
   const headerId = `${id}header`;
+  const frameId = `${id}frame`;
   useEffect(() => {
     console.log("Spawning a new window!")
     // Make the DIV element draggable:
@@ -49,6 +52,7 @@ export default function Window({ name, icon, id }: AppProps) {
         console.error("Element is null, whaat?")
         return
       }
+      const endElement = document.getElementById("end-wind") as HTMLElement
       // Step 3: Check if there is a special header element associated with the draggable element.
       if (document.getElementById(id + "header")) {
         // Step 4: If present, assign the `dragMouseDown` function to the header's `onmousedown` event.
@@ -72,6 +76,8 @@ export default function Window({ name, icon, id }: AppProps) {
         // Step 8: Set up event listeners for mouse movement (`elementDrag`) and mouse button release (`closeDragElement`).
         document.onmouseup = stopDragging;
         document.onmousemove = dragElement;
+
+        document.body.moveBefore(element, endElement);
       }
 
       // Step 9: Define the `elementDrag` function to calculate the new position of the element based on mouse movement.
@@ -110,7 +116,7 @@ export default function Window({ name, icon, id }: AppProps) {
         </div>
       </div>
       <div className="w-full h-full" id="content">
-        <iframe className="w-full h-full" src="https://nuc.de.majic.rs/megaskins"></iframe>
+        <iframe className="w-full h-full" id ={frameId} src={url}></iframe>
       </div>
     </div>
   )
