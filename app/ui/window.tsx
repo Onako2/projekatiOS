@@ -115,7 +115,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
         <p className="cursor-pointer mt-0 bg-red-900" id={closeId}>Close</p>
         </div>
       </div>
-      <div className="w-full h-full" id="content">
+      <div className="w-full h-87" id="content">
         <iframe className="w-full h-full" id ={frameId} src={url}></iframe>
       </div>
     </div>
