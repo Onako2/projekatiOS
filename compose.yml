@@ -24,7 +24,7 @@ services:
     container_name: projekatios
     environment:
       NODE_ENV: production
-      PORT: "3010"
+      PORT: "3001"
     ports:
       - "3001:3001"
     restart: unless-stopped
