@@ -7,6 +7,13 @@ function closeWindow(element: HTMLElement) {
 }
 function openWindow(element: HTMLElement) {
   element.style.display = "block"
+  const endElement = document.getElementById("end-wind") as HTMLElement
+  document.body.moveBefore(element, endElement);
+}
+
+function reloadWindow(element: HTMLElement) {
+  element.parentNode?.appendChild(element);
+  openWindow(element);
 }
 
 type AppProps = {
@@ -19,6 +26,7 @@ type AppProps = {
 
 export default function Window({ name, icon, id, url, autoShow }: AppProps) {
   const closeId = `${id}close`;
+  const reloadId = `${id}reload`;
   const headerId = `${id}header`;
   const frameId = `${id}frame`;
   useEffect(() => {
@@ -27,12 +35,22 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
     const screen = document.getElementById(id);
     dragElement(screen);
 
-    let screenClose = document.querySelector(`#${id}close`)
+    let screenClose = document.querySelector(`#${closeId}`)
+
+    let screenReload = document.querySelector(`#${reloadId}`)
 
     let screenOpen = document.querySelector(`#${id}open`)
 
+    if (!autoShow) {
+      closeWindow(screen)
+    }
+
     screenClose.addEventListener("click", function() {
       closeWindow(screen);
+    });
+
+    screenReload.addEventListener("click", function() {
+      reloadWindow(screen);
     });
 
     screenOpen.addEventListener("click", function() {
@@ -78,6 +96,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
         document.onmousemove = dragElement;
 
         document.body.moveBefore(element, endElement);
+        element.style.cursor = "move";
       }
 
       // Step 9: Define the `elementDrag` function to calculate the new position of the element based on mouse movement.
@@ -98,6 +117,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
       function stopDragging() {
         document.onmouseup = null;
         document.onmousemove = null;
+        element.style.cursor = "pointer";
       }
     }
 
@@ -107,12 +127,13 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
 
   return (
     <div className="border-2 border-solid window w-256 h-100 absolute bg-gray-900/[var(--bg-opacity)] [--bg-opacity:75%] rounded-md" id={id}>
-      <div className="flex-col gap-4 w-full">
+      <div className="flex-col gap-4 w-full select-none cursor-default">
         <div id={headerId}>
-        <p className="backdrop-hue-rotate-90">{name}</p>
+        <p className="backdrop-hue-rotate-90 cursor-pointer">{name}</p>
         </div>
         <div className="flex">
-        <p className="cursor-pointer mt-0 bg-red-900" id={closeId}>Close</p>
+        <p className="cursor-pointer mt-0 bg-red-900 cursor-pointer" id={closeId}>🗕 Minimize</p>
+        <p className="ml-2 cursor-pointer mt-0 bg-yellow-900 cursor-pointer" id={reloadId}>⟳ Reload</p>
         </div>
       </div>
       <div className="w-full h-87" id="content">
