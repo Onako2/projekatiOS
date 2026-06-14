@@ -90,7 +90,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
       }
 
       // Step 6: Define the `startDragging` function to capture the initial mouse position and set up event listeners.
-      function startDragging(e) {
+      function startDragging(e: MouseEvent) {
         e = e || window.event;
         e.preventDefault();
         // Step 7: Get the mouse cursor position at startup.
@@ -106,7 +106,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
       }
 
       // Step 9: Define the `elementDrag` function to calculate the new position of the element based on mouse movement.
-      function dragElement(e) {
+      function dragElement(e: MouseEvent) {
         e = e || window.event;
         e.preventDefault();
         // Step 10: Calculate the new cursor position.
@@ -131,7 +131,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
 
     return () => {
     }
-  }, [])
+  }, [autoShow, closeId, id, reloadId])
 
   return (
     <div className="border-2 border-solid window w-256 h-100 absolute bg-gray-900/[var(--bg-opacity)] [--bg-opacity:75%] rounded-md" id={id}>
