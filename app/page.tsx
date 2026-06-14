@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Window from "./ui/window";
 import DesktopIcon from "./ui/desktopIcon";
 

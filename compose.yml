@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: nextjs-standalone-image
-    container_name: nextjs-standalone-container
+    container_name: projekatios
     environment:
       NODE_ENV: production
       PORT: "3001"
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile.bun
     image: nextjs-standalone-bun-image
-    container_name: nextjs-standalone-bun-container
+    container_name: projekatios
     environment:
       NODE_ENV: production
       PORT: "30010"
