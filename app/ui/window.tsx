@@ -2,16 +2,19 @@
 
 import { useEffect } from "react"
 
-function closeWindow(element: HTMLElement) {
+function closeWindow(element: HTMLElement | null) {
+  if (element == null) return;
   element.style.display = "none"
 }
 function openWindow(element: HTMLElement) {
+  if (element == null) return;
   element.style.display = "block"
   const endElement = document.getElementById("end-wind") as HTMLElement
   document.body.moveBefore(element, endElement);
 }
 
 function reloadWindow(element: HTMLElement) {
+  if (element == null) return;
   element.parentNode?.appendChild(element);
   openWindow(element);
 }
