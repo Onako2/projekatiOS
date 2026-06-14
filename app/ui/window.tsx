@@ -2,19 +2,16 @@
 
 import { useEffect } from "react"
 
-function closeWindow(element: HTMLElement | null) {
-  if (element == null) return;
+function closeWindow(element: HTMLElement) {
   element.style.display = "none"
 }
 function openWindow(element: HTMLElement) {
-  if (element == null) return;
   element.style.display = "block"
   const endElement = document.getElementById("end-wind") as HTMLElement
   document.body.moveBefore(element, endElement);
 }
 
 function reloadWindow(element: HTMLElement) {
-  if (element == null) return;
   element.parentNode?.appendChild(element);
   openWindow(element);
 }
@@ -45,6 +42,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
     let screenOpen = document.querySelector(`#${id}open`)
 
     if (!autoShow) {
+    if (screen == null) return;
       closeWindow(screen)
     }
 
