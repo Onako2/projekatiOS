@@ -35,14 +35,16 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
     const screen = document.getElementById(id);
     dragElement(screen);
 
-    let screenClose = document.querySelector(`#${closeId}`)
+    const screenClose = document.querySelector(`#${closeId}`)
 
-    let screenReload = document.querySelector(`#${reloadId}`)
+    const screenReload = document.querySelector(`#${reloadId}`)
 
-    let screenOpen = document.querySelector(`#${id}open`)
+    const screenOpen = document.querySelector(`#${id}open`)
+
+    
+    if (screen == null || screenClose == null || screenReload == null || screenOpen == null) return;
 
     if (!autoShow) {
-    if (screen == null) return;
       closeWindow(screen)
     }
 
@@ -73,10 +75,12 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
       }
       const endElement = document.getElementById("end-wind") as HTMLElement
       // Step 3: Check if there is a special header element associated with the draggable element.
-      if (document.getElementById(id + "header")) {
+      const headerElement = document.getElementById(id + "header");
+      if (headerElement) {
         // Step 4: If present, assign the `dragMouseDown` function to the header's `onmousedown` event.
         // This allows you to drag the window around by its header.
-        document.getElementById(id + "header").onmousedown = startDragging;
+        if (headerElement == null) return;
+        headerElement.onmousedown = startDragging;
         console.log("a header!")
       } else {
         // Step 5: If not present, assign the function directly to the draggable element's `onmousedown` event.
@@ -96,6 +100,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
         document.onmouseup = stopDragging;
         document.onmousemove = dragElement;
 
+        if (element == null) return;
         document.body.moveBefore(element, endElement);
         element.style.cursor = "move";
       }
@@ -110,6 +115,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
         initialX = e.clientX;
         initialY = e.clientY;
         // Step 11: Update the element's new position by modifying its `top` and `left` CSS properties.
+        if (element == null) return;
         element.style.top = (element.offsetTop - currentY) + "px";
         element.style.left = (element.offsetLeft - currentX) + "px";
       }
@@ -118,6 +124,7 @@ export default function Window({ name, icon, id, url, autoShow }: AppProps) {
       function stopDragging() {
         document.onmouseup = null;
         document.onmousemove = null;
+        if (element == null) return;
         element.style.cursor = "pointer";
       }
     }
