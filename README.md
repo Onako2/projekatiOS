@@ -33,3 +33,7 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. And tada!
 
 <img src="public/bamberg_city.jpg" alt="Buildings in the city of Bamberg">
+
+# AI usage
+
+What AI/LLMs were used for: researching stuff about next js because I am a noob in next js (understanding error messages and explaining stuff to me)
