@@ -7,7 +7,7 @@ export default async function EmbedPage({
 
   return (
     <iframe
-      src={`https://turbowarp.org/${id}/embed`}
+      src={`https://turbowarp.org/${id}/embed?autoplay&addons=pause,gamepad,mute-project&settings-button`}
       style={{
         width: "100%",
         height: "100%",
