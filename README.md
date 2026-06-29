@@ -1,6 +1,6 @@
 # projekatiOS
 
-projekatiOS is just a small website for random stuff I'll do in the future. Currently I have no idea what apps I could add :(  
+projekatiOS is just a small website for random stuff I'll do in the future. Currently I have no idea what apps I could add 
 In case you have any idea, you can PR it :)  
 
 Current apps:
